@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const AddContact = () => {
 	const { store, actions } = useContext(Context);
+
+	const { id } = useParams();
+
+	console.log(id);
 
 	var inputName = "";
 	var inputEmail = "";
@@ -63,10 +67,8 @@ export const AddContact = () => {
 						type="button"
 						className="btn btn-primary form-control"
 						onClick={() => {
-							//debugger;
 							actions.addContact(inputName, inputEmail, inputAddress, inputPhone);
-							console.log(inputName, inputEmail, inputAddress, inputPhone, "DATA"); //Almacena los datos pero no hace el PUT
-							actions.addToList();
+							//actions.addToList();
 						}}>
 						Save
 					</button>
