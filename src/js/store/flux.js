@@ -10,7 +10,6 @@ const getState = ({ getStore, setStore }) => {
 
 		actions: {
 			getListContacts: () => {
-				const store = getStore();
 				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/alvaro_agenda")
 					.then(response => response.json())
 					.then(data => {
@@ -51,6 +50,25 @@ const getState = ({ getStore, setStore }) => {
 				fetch("https://assets.breatheco.de/apis/fake/contact/", requestOptions)
 					.then(response => response.json())
 					.then(result => console.log(result))
+					.catch(error => console.log("error", error));
+			},
+
+			//delete contact elimina contacto por fetch DELETE con id y hace un fetch GET nuevo para que traiga contactos otra vez
+			//temazo como llamo id
+			deleteContact: (id, callback) => {
+				//let store = getStore();
+				//	console.log(inputName, inputEmail, inputAddress, inputPhone);
+				console.log(id);
+				var requestOptions = {
+					method: "DELETE",
+					//	headers: myHeaders,
+					//	body: raw,
+					redirect: "follow"
+				};
+
+				fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, requestOptions)
+					.then(response => response.text())
+					.then(result => callback)
 					.catch(error => console.log("error", error));
 			}
 		}

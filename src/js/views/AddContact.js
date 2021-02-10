@@ -5,9 +5,9 @@ import { Link, useParams } from "react-router-dom";
 export const AddContact = () => {
 	const { store, actions } = useContext(Context);
 
-	const { id } = useParams();
+	//const { id } = useParams();
 
-	console.log(id);
+	//console.log(id);
 
 	var inputName = "";
 	var inputEmail = "";
