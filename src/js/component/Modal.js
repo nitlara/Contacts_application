@@ -1,11 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { withRouter, useParams, Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 export const Modal = props => {
+	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({
 		//initialize state here
 	});
+	let { id } = useParams();
+
+	console.log(id);
+
+	// const eraseContact = () => {
+	// 	let myHeaders = new Headers();
+	// 	var requestOptions = {
+	// 		method: "DELETE",
+	// 		headers: myHeaders
+	// 	};
+	// 	fetch(`"https://assets.breatheco.de/apis/fake/contact/alvaro_agenda/${id}"`, requestOptions)
+	// 	.then(response => response.json())
+	// 	.then(result => console.log(result));
+	// },
+
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
 			<div className="modal-dialog" role="document">
@@ -29,10 +46,16 @@ export const Modal = props => {
 						<p>Warning: unknown consequences after this point... Kidding!</p>
 					</div>
 					<div className="modal-footer">
-						<button type="button" className="btn btn-primary">
-							Oh no!
-						</button>
-						<button type="button" className="btn btn-secondary" data-dismiss="modal">
+						<Link to="/">
+							<button type="button" className="btn btn-primary">
+								Oh no!
+							</button>
+						</Link>
+						<button
+							type="button"
+							className="btn btn-secondary"
+							data-dismiss="modal"
+							onClick={actions.removeContact(id)}>
 							Do it!
 						</button>
 					</div>
@@ -48,7 +71,8 @@ export const Modal = props => {
 Modal.propTypes = {
 	history: PropTypes.object,
 	onClose: PropTypes.func,
-	show: PropTypes.bool
+	show: PropTypes.bool,
+	id: PropTypes.string
 };
 
 /**

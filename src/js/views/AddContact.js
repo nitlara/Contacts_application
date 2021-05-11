@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, useParams } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+//debugger;
 export const AddContact = () => {
 	const { store, actions } = useContext(Context);
 
-	const { id } = useParams();
+	//const { id } = useParams();
 
-	console.log(id);
+	//console.log(id);
 
 	var inputName = "";
 	var inputEmail = "";
@@ -67,7 +68,7 @@ export const AddContact = () => {
 						type="button"
 						className="btn btn-primary form-control"
 						onClick={() => {
-							actions.addContact(inputName, inputEmail, inputAddress, inputPhone);
+							actions.addContact(inputName, inputEmail, inputAddress, inputPhone, id);
 							//actions.addToList();
 						}}>
 						Save

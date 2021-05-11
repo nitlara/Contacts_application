@@ -18,21 +18,10 @@ const getState = ({ getStore, setStore }) => {
 					})
 					.catch(err => console.log("Request Failed", err));
 			},
-			// addToList: () => {
-			// 	const store = getStore();
-			// 	fetch("https://assets.breatheco.de/apis/fake/contact/", {
-			// 		//NO SE EJECUTA EL PUT DE LOS DATOS RECOGIDOS
-			// 		method: "POST",
-			// 		headers: {
-			// 			"content-type": "application/json"
-			// 		},
-			// 		body: JSON.stringify(store.contacts.push())
-			// 	});
-			// },
 			addContact: (inputName, inputEmail, inputAddress, inputPhone) => {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
-				console.log(inputName, inputEmail, inputAddress, inputPhone);
+				//console.log(inputName, inputEmail, inputAddress, inputPhone);
 				var raw = JSON.stringify({
 					full_name: inputName,
 					email: inputEmail,
@@ -52,6 +41,14 @@ const getState = ({ getStore, setStore }) => {
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
+			},
+			removeContact: id => {
+				console.log(id);
+				fetch(`'https://assets.breatheco.de/apis/fake/contact/agenda/alvaro_agenda/${id}'`, {
+					method: "DELETE"
+				})
+					.then(res => res.json())
+					.then(res => console.log(res));
 			}
 		}
 	};
