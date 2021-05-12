@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
 
@@ -7,6 +7,8 @@ export const ContactCard = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
+	// const { id } = useParams();
+	console.log(props.id);
 
 	return (
 		<li className="list-group-item">
