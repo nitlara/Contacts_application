@@ -18,10 +18,10 @@ const getState = ({ getStore, setStore }) => {
 					})
 					.catch(err => console.log("Request Failed", err));
 			},
-			addContact: (inputName, inputEmail, inputAddress, inputPhone) => {
+			addContact: (inputName, inputEmail, inputAddress, inputPhone, id) => {
+				console.log(inputName, inputEmail, inputAddress, inputPhone, id);
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
-				//console.log(inputName, inputEmail, inputAddress, inputPhone);
 				var raw = JSON.stringify({
 					full_name: inputName,
 					email: inputEmail,
@@ -37,7 +37,7 @@ const getState = ({ getStore, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch("https://assets.breatheco.de/apis/fake/contact/", requestOptions)
+				fetch(`"https://assets.breatheco.de/apis/fake/contact/agenda/alvaro_agenda/${id}"`, requestOptions)
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));

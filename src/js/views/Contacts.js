@@ -9,6 +9,7 @@ export const Contacts = () => {
 	const [state, setState] = useState({
 		showModal: false
 	});
+
 	const allContacts = store.contacts.map((element, index) => {
 		return (
 			<ContactCard

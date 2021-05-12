@@ -8,9 +8,9 @@ export const Modal = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
-	let { id } = useParams();
+	// let { id } = useParams();
 
-	console.log(id);
+	// console.log(id);
 
 	// const eraseContact = () => {
 	// 	let myHeaders = new Headers();
@@ -51,11 +51,8 @@ export const Modal = props => {
 								Oh no!
 							</button>
 						</Link>
-						<button
-							type="button"
-							className="btn btn-secondary"
-							data-dismiss="modal"
-							onClick={actions.removeContact(id)}>
+						<button type="button" className="btn btn-secondary" data-dismiss="modal">
+							{/* onClick={() => {actions.removeContact(id)}}> */}
 							Do it!
 						</button>
 					</div>
