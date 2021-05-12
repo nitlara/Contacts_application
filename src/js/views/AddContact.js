@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export const AddContact = () => {
 	const { store, actions } = useContext(Context);
 
-	const { id } = useParams();
+	// console.log(window.location.pathname.substring(1).split("/")[1]);
 
-	console.log(id);
+	// console.log(window.location.pathname);
+	var userData = store.contacts.find(element => element.id == window.location.pathname.substring(1).split("/")[1]);
+	//console.log(userData);
 
 	var inputName = "";
 	var inputEmail = "";
@@ -25,6 +28,7 @@ export const AddContact = () => {
 							type="text"
 							className="form-control"
 							placeholder="Full Name"
+							value={userData ? userData.full_name : ""}
 							onChange={e => {
 								inputName = e.target.value;
 							}}
@@ -36,6 +40,7 @@ export const AddContact = () => {
 							type="email"
 							className="form-control"
 							placeholder="Enter email"
+							value={userData ? userData.email : ""}
 							onChange={e => {
 								inputEmail = e.target.value;
 							}}
@@ -47,6 +52,7 @@ export const AddContact = () => {
 							type="phone"
 							className="form-control"
 							placeholder="Enter phone"
+							value={userData ? userData.phone : ""}
 							onChange={e => {
 								inputPhone = e.target.value;
 							}}
@@ -58,6 +64,7 @@ export const AddContact = () => {
 							type="text"
 							className="form-control"
 							placeholder="Enter address"
+							value={userData ? userData.address : ""}
 							onChange={e => {
 								inputAddress = e.target.value;
 							}}
@@ -67,8 +74,7 @@ export const AddContact = () => {
 						type="button"
 						className="btn btn-primary form-control"
 						onClick={() => {
-							actions.addContact(inputName, inputEmail, inputAddress, inputPhone);
-							//actions.addToList();
+							actions.addContact(inputName, inputEmail, inputAddress, inputPhone, userData.id);
 						}}>
 						Save
 					</button>
