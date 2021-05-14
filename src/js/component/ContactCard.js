@@ -1,3 +1,6 @@
+//PROBLEMA ID IS NOT DEFINED
+//No elimina usuario
+
 import React, { useContext, useState, useEffect } from "react";
 import { withRouter, Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";

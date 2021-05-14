@@ -43,7 +43,7 @@ const getState = ({ getStore, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 			removeContact: id => {
-				console.log(id);
+				console.log("props.id", id);
 				fetch(`'https://assets.breatheco.de/apis/fake/contact/agenda/nitry/${id}'`, {
 					method: "DELETE"
 				})

@@ -1,3 +1,5 @@
+// No escribe en campos de texto
+
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
