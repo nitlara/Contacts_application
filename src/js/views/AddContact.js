@@ -9,13 +9,14 @@ export const AddContact = () => {
 	// console.log(window.location.pathname.substring(1).split("/")[1]);
 
 	// console.log(window.location.pathname);
+
 	var userData = store.contacts.find(element => element.id == window.location.pathname.substring(1).split("/")[1]);
 	//console.log(userData);
 
-	var inputName = "";
-	var inputEmail = "";
-	var inputPhone = "";
-	var inputAddress = "";
+	var inputName = userData ? userData.full_name : "";
+	var inputEmail = userData ? userData.email : "";
+	var inputPhone = userData ? userData.phone : "";
+	var inputAddress = userData ? userData.address : "";
 
 	return (
 		<div className="container">
@@ -27,8 +28,8 @@ export const AddContact = () => {
 						<input
 							type="text"
 							className="form-control"
-							placeholder="Full Name"
-							value={userData ? userData.full_name : ""}
+							placeholder={userData ? userData.full_name : "Full Name"}
+							defaultValue={userData ? userData.full_name : ""}
 							onChange={e => {
 								inputName = e.target.value;
 							}}
@@ -39,10 +40,10 @@ export const AddContact = () => {
 						<input
 							type="email"
 							className="form-control"
-							placeholder="Enter email"
-							value={userData ? userData.email : ""}
+							placeholder={userData ? userData.email : "Enter email"}
+							defaultValue={userData ? userData.email : ""}
 							onChange={e => {
-								inputEmail = e.target.value;
+								userData ? userData.email : (inputEmail = e.target.value);
 							}}
 						/>
 					</div>
@@ -51,10 +52,10 @@ export const AddContact = () => {
 						<input
 							type="phone"
 							className="form-control"
-							placeholder="Enter phone"
-							value={userData ? userData.phone : ""}
+							placeholder={userData ? userData.phone : "Enter phone"}
+							defaultValue={userData ? userData.phone : ""}
 							onChange={e => {
-								inputPhone = e.target.value;
+								userData ? userData.phone : (inputPhone = e.target.value);
 							}}
 						/>
 					</div>
@@ -63,10 +64,10 @@ export const AddContact = () => {
 						<input
 							type="text"
 							className="form-control"
-							placeholder="Enter address"
-							value={userData ? userData.address : ""}
+							placeholder={userData ? userData.address : "Enter address"}
+							defaultValue={userData ? userData.address : ""}
 							onChange={e => {
-								inputAddress = e.target.value;
+								userData ? userData.address : (inputAddress = e.target.value);
 							}}
 						/>
 					</div>
@@ -75,6 +76,7 @@ export const AddContact = () => {
 						className="btn btn-primary form-control"
 						onClick={() => {
 							actions.addContact(inputName, inputEmail, inputAddress, inputPhone, userData.id);
+							window.location.reload();
 						}}>
 						Save
 					</button>

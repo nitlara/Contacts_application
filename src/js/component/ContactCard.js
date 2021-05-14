@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { withRouter, Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
+import { Context } from "../store/appContext";
 
 export const ContactCard = props => {
+	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({
 		//initialize state here
 	});
@@ -21,9 +23,11 @@ export const ContactCard = props => {
 						<Link className="btn" to={`/edit/${props.id}`}>
 							<i className="fas fa-pencil-alt mr-3" />
 						</Link>
-						<button className="btn" onClick={() => props.onDelete()}>
-							<i className="fas fa-trash-alt" />
-						</button>
+						<Link to="/">
+							<button className="btn" onClick={() => actions.removeContact(id)}>
+								<i className="fas fa-trash-alt" />
+							</button>
+						</Link>
 					</div>
 					<label className="name lead">{props.full_name}</label>
 					<br />

@@ -19,7 +19,6 @@ export const Contacts = () => {
 				email={element.email}
 				id={element.id}
 				phone={element.phone}
-				onDelete={() => setState({ showModal: true })}
 			/>
 		);
 	});
@@ -40,7 +39,6 @@ export const Contacts = () => {
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} />
 		</div>
 	);
 };

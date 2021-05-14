@@ -11,7 +11,7 @@ const getState = ({ getStore, setStore }) => {
 		actions: {
 			getListContacts: () => {
 				const store = getStore();
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/alvaro_agenda")
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/nitry")
 					.then(response => response.json())
 					.then(data => {
 						setStore({ contacts: data });
@@ -25,7 +25,7 @@ const getState = ({ getStore, setStore }) => {
 				var raw = JSON.stringify({
 					full_name: inputName,
 					email: inputEmail,
-					agenda_slug: "alvaro_agenda",
+					agenda_slug: "nitry",
 					address: inputAddress,
 					phone: inputPhone
 				});
@@ -37,14 +37,14 @@ const getState = ({ getStore, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch(`"https://assets.breatheco.de/apis/fake/contact/agenda/alvaro_agenda/${id}"`, requestOptions)
+				fetch(`"https://assets.breatheco.de/apis/fake/contact/agenda/nitry/${id}"`, requestOptions)
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
 			},
 			removeContact: id => {
 				console.log(id);
-				fetch(`'https://assets.breatheco.de/apis/fake/contact/agenda/alvaro_agenda/${id}'`, {
+				fetch(`'https://assets.breatheco.de/apis/fake/contact/agenda/nitry/${id}'`, {
 					method: "DELETE"
 				})
 					.then(res => res.json())
