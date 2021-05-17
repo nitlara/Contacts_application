@@ -27,7 +27,12 @@ export const ContactCard = props => {
 							<i className="fas fa-pencil-alt mr-3" />
 						</Link>
 						<Link to="/">
-							<button className="btn" onClick={() => actions.removeContact(id)}>
+							<button
+								className="btn"
+								onClick={() => {
+									console.log(props.id);
+									actions.removeContact(props.id);
+								}}>
 								<i className="fas fa-trash-alt" />
 							</button>
 						</Link>

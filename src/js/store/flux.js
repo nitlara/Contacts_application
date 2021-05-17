@@ -44,7 +44,7 @@ const getState = ({ getStore, setStore }) => {
 			},
 			removeContact: id => {
 				console.log("props.id", id);
-				fetch(`'https://assets.breatheco.de/apis/fake/contact/agenda/nitry/${id}'`, {
+				fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, {
 					method: "DELETE"
 				})
 					.then(res => res.json())

@@ -10,10 +10,10 @@ export const AddContact = () => {
 
 	// console.log(window.location.pathname.substring(1).split("/")[1]);
 
-	// console.log(window.location.pathname);
+	console.log(window.location.pathname);
 
 	var userData = store.contacts.find(element => element.id == window.location.pathname.substring(1).split("/")[1]);
-	//console.log(userData);
+	console.log(userData);
 
 	var inputName = userData ? userData.full_name : "";
 	var inputEmail = userData ? userData.email : "";
@@ -44,7 +44,7 @@ export const AddContact = () => {
 							className="form-control"
 							placeholder={userData ? userData.email : "Enter email"}
 							defaultValue={userData ? userData.email : ""}
-							onChange={e => {
+							onCghange={e => {
 								userData ? userData.email : (inputEmail = e.target.value);
 							}}
 						/>
