@@ -79,6 +79,7 @@ export const AddContact = () => {
 						onClick={() => {
 							actions.addContact(inputName, inputEmail, inputAddress, inputPhone, userData.id);
 							window.location.reload();
+                            //No está guardando estos datos.
 						}}>
 						Save
 					</button>
