@@ -1,5 +1,3 @@
-// No escribe en campos de texto
-
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
@@ -8,7 +6,8 @@ import PropTypes from "prop-types";
 export const AddContact = () => {
 	const { store, actions } = useContext(Context);
 
-	// console.log(window.location.pathname.substring(1).split("/")[1]);
+	var userData = store.contacts.find(element => element.id == window.location.pathname.substring(1).split("/")[1]);
+
 	var inputName = "";
 	var inputEmail = "";
 	var inputPhone = "";
@@ -24,7 +23,8 @@ export const AddContact = () => {
 						<input
 							type="text"
 							className="form-control"
-							placeholder="Full Name"
+							placeholder={"Enter full name"}
+							defaultValue={userData ? userData.full_name : inputName}
 							onChange={e => {
 								inputName = e.target.value;
 							}}
@@ -35,8 +35,9 @@ export const AddContact = () => {
 						<input
 							type="email"
 							className="form-control"
-							placeholder="Enter email"
-							onCghange={e => {
+							placeholder={"Enter email"}
+							defaultValue={userData ? userData.email : inputEmail}
+							onChange={e => {
 								inputEmail = e.target.value;
 							}}
 						/>
@@ -46,7 +47,8 @@ export const AddContact = () => {
 						<input
 							type="phone"
 							className="form-control"
-							placeholder="Enter phone"
+							placeholder={"Enter phone"}
+							defaultValue={userData ? userData.phone : inputPhone}
 							onChange={e => {
 								inputPhone = e.target.value;
 							}}
@@ -57,21 +59,27 @@ export const AddContact = () => {
 						<input
 							type="text"
 							className="form-control"
-							placeholder="Enter address"
+							placeholder={"Enter address"}
+							defaultValue={userData ? userData.address : inputAddress}
 							onChange={e => {
 								inputAddress = e.target.value;
 							}}
 						/>
 					</div>
-					<button
-						type="button"
-						className="btn btn-primary form-control"
-						onClick={() => {
-							actions.addContact(inputName, inputEmail, inputAddress, inputPhone);
-							//window.location.reload();
-						}}>
-						Save
-					</button>
+					<Link to="/">
+						<button
+							type="button"
+							className="btn btn-primary form-control"
+							onClick={() => {
+								if (userData == undefined) {
+									actions.addContact(inputName, inputEmail, inputAddress, inputPhone);
+								} else {
+									actions.updateContact(inputName, inputEmail, inputAddress, inputPhone, userData.id);
+								}
+							}}>
+							Save
+						</button>
+					</Link>
 					<Link className="mt-3 w-100 text-center" to="/">
 						Back home
 					</Link>
